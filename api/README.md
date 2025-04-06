@@ -28,12 +28,25 @@ git clone https://github.com/kuatek/kc-fullstack-dev-tech-task
 docker-compose up --build
 ```
 
-### 3. Access the Application
+### 3. Generate the migrations from json (optional)
+```bash
+cd api
+php migrate.php all
+```
+
+### 4. Execute the migrations
+```bash
+cd api
+php migrate_runner.php all
+```
+You can also run the migrations manually
+
+### 5. Access the Application
 - Frontend: http://cc.localhost
 - API: http://api.cc.localhost
 - Traefik Dashboard: http://127.0.0.1:8080/dashboard/
 
-### 4. Database Credentials
+## Database Credentials
 - Host: db.cc.localhost
 - Database: course_catalog
 - Username: test_user
