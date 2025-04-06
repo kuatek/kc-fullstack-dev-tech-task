@@ -22,13 +22,15 @@ class CourseRepository
      */
     public function getCourses(?string $categoryId = null): array
     {
+        // Base query without category filter
         $query = "
             WITH RECURSIVE category_tree AS (
                 SELECT 
                     id, 
                     parent_id
                 FROM categories
-                WHERE id = :category_id
+                WHERE 1=1 " .
+            ($categoryId ? "AND id = :category_id" : "") . "
 
                 UNION ALL
 
@@ -46,13 +48,16 @@ class CourseRepository
                 c.image_preview, 
                 c.main_category_name
             FROM courses c
-            WHERE 1=1 " .
-            ($categoryId ? "AND c.category_id IN (SELECT id FROM category_tree)" : "") .
+            " .
+            ($categoryId ? "WHERE c.category_id IN (SELECT id FROM category_tree)" : "") .
             " ORDER BY c.title";
 
         $stmt = $this->connection->prepare($query);
+
+        // Only bind parameter if category_id is provided
         $params = $categoryId ? ['category_id' => $categoryId] : [];
         $stmt->execute($params);
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

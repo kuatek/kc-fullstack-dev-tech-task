@@ -20,7 +20,7 @@ This is a full-stack course catalog application with a PHP backend API and a van
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/kuatek/kc-fullstack-dev-tech-task
 ```
 
 ### 2. Start the Application
@@ -56,6 +56,3 @@ docker-compose up --build
 - Ensure Docker is running
 - Check Docker logs for any initialization issues
 - Verify network connectivity
-
-## License
-[Your License Here]
