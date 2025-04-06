@@ -6,6 +6,7 @@ This is a full-stack course catalog application with a PHP backend API and a van
 ## Prerequisites
 - Docker
 - Docker Compose
+- php composer
 - apache rewrite mode (a2enmod rewrite)
 - pdo_mysql extension (docker-compose exec api docker-php-ext-install pdo pdo_mysql)
 - Don't forget to restart apache (sudo service apache2 restart)
@@ -28,20 +29,26 @@ git clone https://github.com/kuatek/kc-fullstack-dev-tech-task
 docker-compose up --build
 ```
 
-### 3. Generate the migrations from json (optional)
+### 3. Dump composer for namespace
+```bash
+cd api
+composer dump-autoload
+```
+
+### 4. Generate the migrations from json (optional)
 ```bash
 cd api
 php migrate.php all
 ```
 
-### 4. Execute the migrations
+### 5. Execute the migrations
 ```bash
 cd api
 php migrate_runner.php all
 ```
 You can also run the migrations manually
 
-### 5. Access the Application
+### 6. Access the Application
 - Frontend: http://cc.localhost
 - API: http://api.cc.localhost
 - Traefik Dashboard: http://127.0.0.1:8080/dashboard/
